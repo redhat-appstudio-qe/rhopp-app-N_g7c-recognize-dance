@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: mycomponent
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: mycomponent
+    app.kubernetes.io/part-of: application-sample
+  name: mycomponent
+  namespace: rhopp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: mycomponent
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: mycomponent
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio/user-workload:rhopp-mycomponent
+        imagePullPolicy: Always
+        name: container-image
+        resources: {}
+status: {}
